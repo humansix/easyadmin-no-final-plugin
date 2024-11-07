@@ -86,6 +86,8 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
             }
         }
 
+        $this->io->write(messages: sprintf('Compare %s with %s', $packageName, $package?->getName()), verbosity: IOInterface::DEBUG);
+
         return $packageName === $package?->getName();
     }
 
