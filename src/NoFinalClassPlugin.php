@@ -73,7 +73,7 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
 
     private function isComposerWorkingOn(string $packageName, PackageEvent $event): bool
     {
-        $this->io->write('Compare %s with %s', $packageName, $event->getOperation()->getPackage()->getName());
+        $this->io->write(sprintf('Compare %s with %s', $packageName, $event->getOperation()->getPackage()->getName()));
 
         return $packageName === $event->getOperation()->getPackage()->getName();
     }
