@@ -40,7 +40,9 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
 
     public function onPackageInstall(PackageEvent $event)
     {
-        if (!$this->isComposerWorkingOn('humansix/easyadmin-no-final-plugin', $event)) {
+        $this->io->write(sprintf('Compare %s with %s', 'humansix/easyadmin-no-final-plugin', $event->getOperation()->getPackage()->getName()));
+
+        if (!'humansix/easyadmin-no-final-plugin' === $event->getOperation()->getPackage()->getName()) {
             return;
         }
 
@@ -49,7 +51,9 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
 
     public function onPackageUpdate(PackageEvent $event)
     {
-        if (!$this->isComposerWorkingOn('humansix/easyadmin-no-final-plugin', $event)) {
+        $this->io->write(sprintf('Compare %s with %s', 'humansix/easyadmin-no-final-plugin', $event->getOperation()->getInitialPackage()->getName()));
+
+        if (!'humansix/easyadmin-no-final-plugin' === $event->getOperation()->getInitialPackage()->getName()) {
             return;
         }
 
@@ -69,13 +73,6 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
         }
 
         $this->io->write('Updated all EasyAdmin PHP files to make classes non-final');
-    }
-
-    private function isComposerWorkingOn(string $packageName, PackageEvent $event): bool
-    {
-        $this->io->write(sprintf('Compare %s with %s', $packageName, $event->getOperation()->getPackage()->getName()));
-
-        return $packageName === $event->getOperation()->getPackage()->getName();
     }
 
     private function getVendorDirPath(): string
