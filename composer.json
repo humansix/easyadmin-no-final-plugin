@@ -1,5 +1,5 @@
 {
-  "name": "easycorp/easyadmin-no-final-plugin",
+  "name": "humansix/easyadmin-no-final-plugin",
   "type": "composer-plugin",
   "description": "It removes the 'final' PHP keyword from all EasyAdmin classes so you can extend those classes in your projects.",
   "license": "MIT",
@@ -11,7 +11,8 @@
   ],
   "require": {
     "php": ">=8.0.2",
-    "composer-plugin-api": "^2.0"
+    "composer-plugin-api": "^2.0",
+    "easycorp/easyadmin-bundle": "^4.5"
   },
   "require-dev": {
     "composer/composer": "^2.0"
