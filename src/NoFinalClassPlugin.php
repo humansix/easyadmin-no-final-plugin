@@ -40,7 +40,7 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
 
     public function onPackageInstall(PackageEvent $event)
     {
-        if (!$this->isComposerWorkingOn('easycorp/easyadmin-bundle', $event) && !$this->isComposerWorkingOn('humansix/easyadmin-no-final-plugin', $event)) {
+        if (!$this->isComposerWorkingOn('humansix/easyadmin-no-final-plugin', $event)) {
             return;
         }
 
@@ -49,7 +49,7 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
 
     public function onPackageUpdate(PackageEvent $event)
     {
-        if (!$this->isComposerWorkingOn('easycorp/easyadmin-bundle', $event)) {
+        if (!$this->isComposerWorkingOn('humansix/easyadmin-no-final-plugin', $event)) {
             return;
         }
 
