@@ -73,22 +73,9 @@ final class NoFinalClassPlugin implements PluginInterface, EventSubscriberInterf
 
     private function isComposerWorkingOn(string $packageName, PackageEvent $event): bool
     {
-        /** @var PackageInterface|null $package */
-        $package = null;
+        $this->io->write('Compare %s with %s', $packageName, $event->getOperation()->getPackage()->getName());
 
-        foreach ($event->getOperations() as $operation) {
-            if ('install' === $operation->getOperationType()) {
-                /** @var InstallOperation $operation */
-                $package = $operation->getPackage();
-            } elseif ('update' === $operation->getOperationType()) {
-                /** @var UpdateOperation $operation */
-                $package = $operation->getInitialPackage();
-            }
-        }
-
-        $this->io->write(messages: sprintf('Compare %s with %s', $packageName, $package?->getName()), verbosity: IOInterface::DEBUG);
-
-        return $packageName === $package?->getName();
+        return $packageName === $event->getOperation()->getPackage()->getName();
     }
 
     private function getVendorDirPath(): string
